@@ -1,5 +1,9 @@
 name: Build and Push Docker Image
 
+permissions:
+      contents: read
+      packages: write
+
 on:
   push:
     branches: [ main ]
@@ -14,10 +18,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      packages: write
-
+    
     steps:
       - name: Checkout repository
         uses: actions/checkout@v5
