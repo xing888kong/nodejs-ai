@@ -1,9 +1,5 @@
 name: Build and Push Docker Image
 
-permissions:
-      contents: read
-      packages: write
-
 on:
   push:
     branches: [ main ]
@@ -18,7 +14,10 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    
+    permissions:
+      contents: read
+      packages: write
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v5
@@ -40,7 +39,7 @@ jobs:
           push: true
           platforms: linux/amd64,linux/arm64
           tags: |
-            ghcr.io/${{ github.repository_owner }}/ai:0603
+            ghcr.io/${{ github.repository_owner }}/nodejs:0603
           labels: |
             org.opencontainers.image.source=https://github.com/${{ github.repository }}
             org.opencontainers.image.description=HTTP Server
